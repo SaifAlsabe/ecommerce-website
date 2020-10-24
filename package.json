@@ -1,0 +1,25 @@
+{
+    "name": "carbon",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "start": "node server.js",
+        "build": "cd client && npm run build",
+        "install-client": "cd client && npm install",
+        "heroku-postbuild": "npm run install-client && npm run build "
+    },
+    "author": "Saif Alsabe",
+    "license": "ISC",
+    "dependencies": {
+        "body-parser": "^1.19.0",
+        "dotenv": "^8.2.0",
+        "express": "^4.17.1",
+        "jsonwebtoken": "^8.5.1",
+        "mongoose": "^5.10.6",
+        "redux-devtools-extension": "^2.13.8"
+    },
+    "devDependencies": {
+        "nodemon": "^2.0.4"
+    }
+}
