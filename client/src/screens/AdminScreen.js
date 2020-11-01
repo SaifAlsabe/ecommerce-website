@@ -11,11 +11,7 @@ function AdminScreen() {
     const dispatch = useDispatch()
 
     useEffect(() => {
-
         dispatch(listProducts());
-
-        return () => {
-        }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 

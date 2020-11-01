@@ -21,9 +21,6 @@ function CartScreen(props) {
         if (productId) {
             dispatch(addToCart(productId, qty))
         }
-        return () => {
-            //
-        }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
@@ -34,7 +31,6 @@ function CartScreen(props) {
         props.history.push(redirect)
     }
 
-    ///////////////////////////////////////////////////////////////////////////////
 
     return (
         <div className="cart">

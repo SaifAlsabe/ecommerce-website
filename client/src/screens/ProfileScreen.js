@@ -12,8 +12,6 @@ function ProfileScreen() {
 
     useEffect(() => {
         dispatch(getAddress(userInfo.name, userInfo.email))
-        return () => {
-        }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 

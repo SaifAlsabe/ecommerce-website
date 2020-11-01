@@ -16,16 +16,10 @@ function HomeScreen(props) {
     // const categorizedProducts = products.filter(product => product.category === category )
 
     useEffect(() => {
-
         dispatch(listProducts(category));
-
-        return () => {
-            //cleanup
-        };
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [category])
 
-    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     return (
         loading ? <div>Loading...</div> :

@@ -11,9 +11,6 @@ function ProductScreen(props) {
 
     useEffect(() => {
         dispatch(detailsProduct(props.match.params.id))
-        return () => {
-            //
-        }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
@@ -22,7 +19,7 @@ function ProductScreen(props) {
     }
 
 
-    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    
 
     return (
         <div>

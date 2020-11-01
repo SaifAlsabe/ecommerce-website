@@ -15,10 +15,6 @@ function RegisterScreen(props) {
         if(userInfo){
             props.history.push('/')
         }
-        
-        return () => {
-            //
-        }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [userInfo])
 

@@ -15,8 +15,6 @@ function SigninScreen(props) {
             dispatch(getAddress(userInfo.name, userInfo.email))
             props.history.push('/')
         }
-        return () => {
-        }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [userInfo])
 
