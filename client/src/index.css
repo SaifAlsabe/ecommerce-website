@@ -123,6 +123,16 @@ a:hover {
     margin-bottom: 1rem;
 }
 
+.half-full {
+    position: relative;
+}
+
+.half-empty {
+    color: black;
+    position: absolute;
+    left: 0;
+}
+
 .product-image {
     max-width: 34rem;
     max-height: 34rem;

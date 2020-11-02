@@ -18,80 +18,98 @@ function ProductScreen(props) {
         props.history.push("/cart/" + props.match.params.id + "?qty=" + qty)
     }
 
-
-    
-
     return (
-        <div>
+        loading ? <div>Loading...</div> :
+            error ? <div>{error}</div> :
+                !product.rating ? <div>loading...</div> :
 
-            <div className="back-to-results">
-                <Link to="/">Back to results</Link>
-            </div>
 
-            {loading ? <div>Loading...</div> :
-                error ? <div>{error}</div> : (
+                    <div>
 
-                    <div className="details">
-
-                        <div className="details-image">
-                            <img src={product.image} alt="product"></img>
+                        <div className="back-to-results">
+                            <Link to="/">Back to results</Link>
                         </div>
 
-                        <div className="details-info">
-                            <ul>
-                                <li>
-                                    <h2>{product.name}</h2>
-                                </li>
-                                <li>
-                                    <b>{product.rating}  Stars ({product.numReviews} reviews)</b>
-                                </li>
-                                <li>
-                                    <b>Description:</b>
-                                    <div>
-                                        {product.description}
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
+                        <div className="details">
 
-                        <div className="details-action">
-                            <ul>
+                            <div className="details-image">
+                                <img src={product.image} alt="product"></img>
+                            </div>
 
-                                <li>
-                                    Status: {product.countInStock > 0 ? "In Stock" : "Out of Stock"}
-                                </li>
-                                <li>
-                                    Unit Price: <b>${product.price}</b>
-                                </li>
+                            <div className="details-info">
+                                <ul>
+                                    <li>
+                                        <h2>{product.name}</h2>
+                                    </li>
+                                    <li>
+                                        {[...Array(Math.floor(product.rating))].map((i) =>
+                                                <span style={{ color: "orange" }} className="fa fa-star"></span>
+                                            )}
+                                        
 
-                                {
-                                    product.countInStock > 0 ?
-                                        <li>
-                                            Qty: <select value={qty} onChange={(e) => setQty(e.target.value)}>
-                                                {
-                                                    [...Array(product.countInStock).keys()].map(x =>
-                                                        <option key={x + 1} value={x + 1}>{x + 1}</option>
-                                                    )
-                                                }
-                                            </select>
-                                        </li>
-                                        : <li></li>
-                                }
-                                <li>
+                                        {product.rating % 1 === 0 ? <></> :
+                                            Math.ceil(product.rating) - Math.floor(product.rating) >= 0.5 ?
+                                                <span style={{ color: "orange" }} className="fa fa-star-half half-full">
+                                                    <span style={{ transform: "scaleX(-1)" }} className="fa fa-star-half half-empty"></span>
+                                                </span>
+                                                :
+                                                <span className="fa fa-star"></span>
+                                        }
+                                        {[...Array(5 - Math.ceil(product.rating))].map((i) =>
+                                            <span className="fa fa-star"></span>
+                                        )}
+
+                                    ({product.numReviews} reviews)
+                                </li>
+                                    <li>
+                                        <b>Description:</b>
+                                        <div>
+                                            {product.description}
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+
+
+
+                            <div className="details-action">
+                                <ul>
+
+                                    <li>
+                                        Status: {product.countInStock > 0 ? "In Stock" : "Out of Stock"}
+                                    </li>
+                                    <li>
+                                        Unit Price: <b>${product.price}</b>
+                                    </li>
+
                                     {
                                         product.countInStock > 0 ?
-                                            <button onClick={handleAddToCart} className="button">Add to cart</button> : <div></div>
+                                            <li>
+                                                Qty: <select value={qty} onChange={(e) => setQty(e.target.value)}>
+                                                    {
+                                                        [...Array(product.countInStock).keys()].map(x =>
+                                                            <option key={x + 1} value={x + 1}>{x + 1}</option>
+                                                        )
+                                                    }
+                                                </select>
+                                            </li>
+                                            : <li></li>
                                     }
-                                </li>
+                                    <li>
+                                        {
+                                            product.countInStock > 0 ?
+                                                <button onClick={handleAddToCart} className="button">Add to cart</button> : <div></div>
+                                        }
+                                    </li>
 
-                            </ul>
+                                </ul>
+                            </div>
+
                         </div>
 
-                    </div>
-                )
-            }
 
-        </div>
+
+                    </div>
     )
 }
 

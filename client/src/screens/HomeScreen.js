@@ -7,18 +7,15 @@ import { listProducts } from '../actions/productActions';
 function HomeScreen(props) {
 
     const category = props.match.params.id ? props.match.params.id : ''
-    const productList = useSelector(state => state.productList);
-    const { products, loading, error } = productList;
+    const { products, loading, error } = useSelector(state => state.productList);
     const dispatch = useDispatch();
-
-    // const categorizedProducts = products
-    // console.log(products)
-    // const categorizedProducts = products.filter(product => product.category === category )
 
     useEffect(() => {
         dispatch(listProducts(category));
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [category])
+
+
 
 
     return (
@@ -37,7 +34,26 @@ function HomeScreen(props) {
                                     </div>
                                     <div className="product-brand">{product.brand}</div>
                                     <div className="product-price">${product.price}</div>
-                                    <div className="product-rating">{product.rating} Stars ({product.numReviews} reviews)</div>
+                                    <div className="product-rating">
+                                        {/* add rating stars */}
+                                        {[...Array(Math.floor(product.rating))].map((i) =>
+                                            <span style={{ color: "orange" }} className="fa fa-star"></span>
+                                        )}
+                                        {product.rating % 1 === 0 ? <></> :
+                                            Math.ceil(product.rating) - Math.floor(product.rating) >= 0.5 ? <>
+                                                <span style={{ color: "orange" }} className="fa fa-star-half half-full">
+                                                    <span style={{ transform: "scaleX(-1)" }} className="fa fa-star-half half-empty"></span>
+                                                </span>
+                                            </>
+                                                :
+                                                <span className="fa fa-star"></span>
+                                        }
+                                        {[...Array(5 - Math.ceil(product.rating))].map((i) =>
+                                            <span className="fa fa-star"></span>
+                                        )}
+                                        &nbsp;
+                                        ({product.numReviews} reviews)
+                                    </div>
                                 </div>
                             </li>
                         ))
