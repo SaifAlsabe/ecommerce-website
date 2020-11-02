@@ -40,7 +40,7 @@ function HomeScreen(props) {
                                             <span style={{ color: "orange" }} className="fa fa-star"></span>
                                         )}
                                         {product.rating % 1 === 0 ? <></> :
-                                            Math.ceil(product.rating) - Math.floor(product.rating) >= 0.5 ? <>
+                                            product.rating - Math.floor(product.rating) >= 0.5 ? <>
                                                 <span style={{ color: "orange" }} className="fa fa-star-half half-full">
                                                     <span style={{ transform: "scaleX(-1)" }} className="fa fa-star-half half-empty"></span>
                                                 </span>

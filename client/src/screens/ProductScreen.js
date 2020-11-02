@@ -42,13 +42,14 @@ function ProductScreen(props) {
                                         <h2>{product.name}</h2>
                                     </li>
                                     <li>
+                                        <strong>{product.rating}</strong>
+                                        &nbsp;
                                         {[...Array(Math.floor(product.rating))].map((i) =>
-                                                <span style={{ color: "orange" }} className="fa fa-star"></span>
-                                            )}
-                                        
+                                            <span style={{ color: "orange" }} className="fa fa-star"></span>)}
+
 
                                         {product.rating % 1 === 0 ? <></> :
-                                            Math.ceil(product.rating) - Math.floor(product.rating) >= 0.5 ?
+                                            product.rating - Math.floor(product.rating) >= 0.5 ?
                                                 <span style={{ color: "orange" }} className="fa fa-star-half half-full">
                                                     <span style={{ transform: "scaleX(-1)" }} className="fa fa-star-half half-empty"></span>
                                                 </span>
@@ -58,7 +59,7 @@ function ProductScreen(props) {
                                         {[...Array(5 - Math.ceil(product.rating))].map((i) =>
                                             <span className="fa fa-star"></span>
                                         )}
-
+                                    &nbsp;
                                     ({product.numReviews} reviews)
                                 </li>
                                     <li>
